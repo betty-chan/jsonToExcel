@@ -1,4 +1,4 @@
-# custom-json2excel
+# jsonToExcel
 
 ## Plugin setup
 
