@@ -2,12 +2,6 @@
 
 ## Plugin setup
 
-```
-yarn add custom-json2excel
-or
-npm install custom-json2excel
-```
-
 ## How to use?
 
 ### 方法一:
@@ -213,3 +207,6 @@ json2excel.generate();
 | type      | String   | xls        | ×          | 生成的表格类型，可选值(xls、csv)                                   |
 | onStart   | Function |            | ×          | 生成 Excel 前的回调函数                                            |
 | onSuccess | Function |            | ×          | 生成 Excel 成功的回调函数                                          |
+
+## 参考
+
