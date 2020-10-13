@@ -1,3 +1,4 @@
+// import download from "./utils/download.js";
 export default class Json2Excel {
   constructor({
     data = [],
@@ -25,9 +26,9 @@ export default class Json2Excel {
   }
   downloadFields() {
     if (this.fields !== undefined) return this.fields;
+
     if (this.exportFields !== undefined) return this.exportFields;
   }
-  //自定义header方法
   toChsKeys(json, keyMap) {
     return json.map(item => {
       for (let key in item) {
@@ -38,8 +39,10 @@ export default class Json2Excel {
             }
             delete item[key];
           } else {
-            item[keyMap[key]] = item[key];
-            delete item[key];
+            if (keyMap[key] != key) {
+              item[keyMap[key]] = item[key];
+              delete item[key];
+            }
           }
         } else {
           delete item[key];
@@ -48,7 +51,6 @@ export default class Json2Excel {
       return item;
     });
   }
-  //执行生成
   generate() {
     if (!this.data.length) {
       return;
@@ -88,7 +90,9 @@ export default class Json2Excel {
       setTimeout(() => { self.URL.revokeObjectURL(anchor.href); }, 250);
     }, 66);
   }
-  // 使用 downloadjs 生成下载链接
+  /*
+  使用 downloadjs 生成下载链接
+  */
   export(data, filename, mime) {
     new Promise((resolve, reject) => {
       let blob = this.base64ToBlob(data, mime);
@@ -99,7 +103,11 @@ export default class Json2Excel {
       })
       .catch(err => { });
   }
-  // 将json数据转换为XLS文件
+  /*
+  jsonToXLS
+  ---------------
+    将json数据转换为XLS文件
+  */
   jsonToXLS(data) {
     let xlsTemp =
       '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta name=ProgId content=Excel.Sheet> <meta name=Generator content="Microsoft Excel 11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>${table}</table></body></html>';
@@ -135,7 +143,11 @@ export default class Json2Excel {
     }
     return xlsTemp.replace("${table}", xlsData);
   }
-  // 将json数据转换为CSV文件
+  /*
+  jsonToCSV
+  ---------------
+  将json数据转换为CSV文件
+  */
   jsonToCSV(data) {
     var csvData = "";
     //Header
@@ -172,7 +184,11 @@ export default class Json2Excel {
     }
     return csvData;
   }
-  //仅获取要导出的数据，如果未设置任何字段则返回所有数据
+  /*
+  getProcessedJson
+  ---------------
+  仅获取要导出的数据，如果未设置任何字段则返回所有数据
+  */
   getProcessedJson(data, header) {
     let keys = this.getKeys(data, header);
     let newData = [];
@@ -200,7 +216,11 @@ export default class Json2Excel {
     }
     return keys;
   }
-  //将标题和页脚属性解析为csv格式
+  /*
+parseExtraData
+---------------
+将标题和页脚属性解析为csv格式
+*/
   parseExtraData(extraData, format) {
     let parseData = "";
     if (Array.isArray(extraData)) {
@@ -228,11 +248,14 @@ export default class Json2Excel {
     for (let j = 1; j < keyNestedSplit.length; j++) {
       valueFromNestedKey = valueFromNestedKey[keyNestedSplit[j]];
     }
+
     valueFromNestedKey = this.callItemCallback(key, valueFromNestedKey);
+
     valueFromNestedKey =
       valueFromNestedKey === null || valueFromNestedKey === undefined
         ? ""
         : valueFromNestedKey; // 过滤null、undefined的值
+
     return valueFromNestedKey;
   }
   base64ToBlob(data, mime) {
