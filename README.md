@@ -1,4 +1,4 @@
-# custom-json2excel
+# covert-json-to-excel
 
 ## Plugin setup
 
