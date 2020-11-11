@@ -71,7 +71,7 @@ const keyMap = [{
 },
 {
   title:"地址",
-  render:function(row){
+  filter:function(row){
     return row.companyAddress.companyAddressZh
   }
 }];
