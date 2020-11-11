@@ -35,7 +35,7 @@ export default class Json2Excel {
           if (typeof item.filter === "function") {
             resultItem[item.title] = item.filter(row);
           } else {
-            resultItem[item.title] = row[item.key];
+            resultItem[item.title] = row[item.key] || "";
           }
         }
       }
