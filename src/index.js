@@ -31,10 +31,12 @@ export default class Json2Excel {
     json.map(row => {
       let resultItem = {}
       for (let item of keyMap) {
-        if (typeof item.filter === "function") {
-          resultItem[item.title] = item.filter(row);
-        } else {
-          resultItem[item.title] = row[item.key];
+        if (item.key && item.title) {
+          if (typeof item.filter === "function") {
+            resultItem[item.title] = item.filter(row);
+          } else {
+            resultItem[item.title] = row[item.key];
+          }
         }
       }
       result.push(resultItem);
