@@ -31,8 +31,8 @@ export default class Json2Excel {
     json.map(row => {
       let resultItem = {}
       for (let item of keyMap) {
-        if (typeof item.render === "function") {
-          resultItem[item.title] = item.render(row);
+        if (typeof item.filter === "function") {
+          resultItem[item.title] = item.filter(row);
         } else {
           resultItem[item.title] = row[item.key];
         }
