@@ -5,6 +5,7 @@ export default class Json2Excel {
     fields = false,
     footer = [],
     keyMap = [],
+    headstyle = {},
     name = "excel",
     title = [],
     type = "xls",
@@ -15,6 +16,7 @@ export default class Json2Excel {
     this.exportFields = exportFields;
     this.fields = fields;
     this.footer = footer;
+    this.headstyle = headstyle;
     this.keyMap = keyMap;
     this.name = name;
     this.title = title;
@@ -110,7 +112,7 @@ export default class Json2Excel {
     }
     //Fields
     for (let key in data[0]) {
-      xlsData += "<th>" + key + "</th>";
+      xlsData += `<th style="${this.headstyle[key] || ''}">${key}</th>`;
     }
     xlsData += "</tr></thead>";
     xlsData += "<tbody>";
@@ -118,7 +120,7 @@ export default class Json2Excel {
     data.map(function (item, index) {
       xlsData += "<tbody><tr>";
       for (let key in item) {
-        xlsData += "<td>" + item[key] + "</td>";
+        xlsData += `<td>${item[key]}</td>`;
       }
       xlsData += "</tr></tbody>";
     });
