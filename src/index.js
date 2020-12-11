@@ -120,7 +120,9 @@ export default class Json2Excel {
     data.map(function (item, index) {
       xlsData += "<tbody><tr>";
       for (let key in item) {
-        item[key] = item[key].replace(/<br\/>|\n/g, "<br style='mso-data-placement:same-cell;'/>")
+        if (item[key]) {
+          item[key] = item[key].replace(/<br\/>|\n/g, "<br style='mso-data-placement:same-cell;'/>")
+        }
         xlsData += `<td>${item[key]}</td>`;
       }
       xlsData += "</tr></tbody>";
