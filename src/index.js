@@ -120,10 +120,10 @@ export default class Json2Excel {
     data.map(function (item, index) {
       xlsData += "<tbody><tr>";
       for (let key in item) {
-        if (item[key]) {
+        if (typeof item[key] == "string") {
           item[key] = item[key].replace(/<br\/>|\n/g, "<br style='mso-data-placement:same-cell;'/>")
         }
-        xlsData += `<td>${item[key]}</td>`;
+        xlsData += `<td style="mso-number-format:'\@';">${item[key]}</td>`;
       }
       xlsData += "</tr></tbody>";
     });
