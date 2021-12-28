@@ -11,8 +11,8 @@ npm i covert-json-to-excel
 ```js
 const data = [
   {
-    name: "哈哈",
-    age: 1,
+    name: "张三",
+    age: 21,
     sex: "男",
     companyName: "公司1",
     companyAddress: {
@@ -21,8 +21,8 @@ const data = [
     }
   },
   {
-    name: "呵呵",
-    age: 2,
+    name: "王红",
+    age: 32,
     sex: "女",
     companyName: "公司2",
     companyAddress: {
@@ -31,23 +31,13 @@ const data = [
     }
   },
   {
-    name: "嘻嘻",
-    age: 3,
-    sex: "男",
+    name: "李丽",
+    age: 24,
+    sex: "女",
     companyName: "公司3",
     companyAddress: {
       companyAddressZh:"公司地址中文3",
       companyAddressEn:"公司地址英文3"
-    }
-  },
-  {
-    name: "啦啦",
-    age: 4,
-    sex: "女",
-    companyName: "公司4",
-    companyAddress: {
-      companyAddressZh:"公司地址中文4",
-      companyAddressEn:"公司地址英文4"
     }
   }
 ];
