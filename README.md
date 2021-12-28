@@ -54,7 +54,7 @@ json2excel.generate();
 2. 自定义头部字段时的使用方式：
 
 ```js
-import Json2excel from "custom-json2excel";
+import Json2excel from "covert-json-to-excel";
 const keyMap = [{
   title:"姓名",
   key:"name",
