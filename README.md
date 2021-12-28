@@ -46,7 +46,7 @@ const data = [
 1. json直接转化：
 
 ```js
-import Json2excel from "custom-json2excel";
+import Json2excel from "covert-json-to-excel";
 const json2excel = new Json2excel({ data });
 json2excel.generate();
 ```
@@ -73,6 +73,7 @@ json2excel.generate();
 3. 绑定回调函数的使用方式：
 
 ```js
+import Json2excel from "covert-json-to-excel";
 const json2excel = new Json2excel({
   data,
   keyMap,
